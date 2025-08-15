@@ -1,30 +1,28 @@
-import { useEffect } from "react"
+import { memo, useCallback, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../lib/hooks"
 import { fetchCoins } from "../../lib/features/coins/coinsSlice"
 import { updatePortfolioValues } from "../../lib/features/portfolio/portfolioSlice"
-import { addToNavigationHistory } from "../../lib/features/ui/uiSlice"
+// import { addToNavigationHistory } from "../../lib/features/ui/uiSlice"
 import { selectPortfolioWithCoinData, selectPortfolioSummary } from "../../lib/features/portfolio/portfolioSelectors"
 import { DashboardHeader } from "../../components/dashboard/dashboard-header"
 import { PortfolioSummary } from "../../components/portfolio/portfolio-summary"
 import { PortfolioHoldings } from "../../components/portfolio/portfolio-holdings"
 import { PortfolioAnalytics } from "../../components/portfolio/portfolio-analytics"
 import { EmptyPortfolio } from "../../components/portfolio/empty-portfolio"
-// import { RealTimeIndicator } from "@/components/dashboard/real-time-indicator"
+import { RealTimeIndicator } from "../../components/dashboard/real-time-indicator"
 import { Breadcrumbs } from "../../components/navigation/breadcrumbs"
-// import { useAutoRefresh } from "@/hooks/use-auto-refresh"
-// import { Card, CardContent } from "@/components/ui/card"
-// import { usePathname } from "next/navigation"
+import { useAutoRefresh } from "../../hooks/use-auto-refresh"
 
-const Portfolio = () => {
+const Portfolio = memo(function Portfolio() {
   const dispatch = useAppDispatch()
   // const pathname = usePathname()
   const portfolioData = useAppSelector(selectPortfolioWithCoinData)
   const portfolioSummary = useAppSelector(selectPortfolioSummary)
 
-  // useAutoRefresh({
-  //   interval: 30000, // 30 seconds
-  //   enabled: portfolioData.length > 0, // Only auto-refresh if user has holdings
-  // })
+  useAutoRefresh({
+    interval: 30000, // 30 seconds
+    enabled: portfolioData.length > 0, // Only auto-refresh if user has holdings
+  })
 
   useEffect(() => {
     dispatch(
@@ -35,10 +33,15 @@ const Portfolio = () => {
     )
   }, [dispatch, portfolioSummary.totalValue, portfolioSummary.totalChange24h])
 
-  useEffect(() => {
+  const fetchCoinsCallback = useCallback(() => {
     dispatch(fetchCoins({ limit: 100 }))
-    dispatch(addToNavigationHistory(location.pathname))
-  }, [dispatch, location.pathname])
+  }, [dispatch])
+
+  useEffect(() => {
+    fetchCoinsCallback()
+    // dispatch(addToNavigationHistory(location.pathname))
+  }, [fetchCoinsCallback, location.pathname])
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -55,7 +58,7 @@ const Portfolio = () => {
 
           {portfolioData.length > 0 && (
             <div className="flex items-center gap-2">
-              {/* <RealTimeIndicator /> */}
+              <RealTimeIndicator />
               <div className="text-xs text-muted-foreground">Live updates</div>
             </div>
           )}
@@ -79,6 +82,6 @@ const Portfolio = () => {
       </main>
     </div>
   )
-}
+})
 
 export default Portfolio
