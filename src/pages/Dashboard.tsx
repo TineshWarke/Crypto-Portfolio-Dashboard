@@ -1,4 +1,4 @@
-import { useEffect, memo } from "react"
+import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../lib/hooks"
 // import { fetchCoins } from "@/lib/features/coins/coinsSlice"
 // import { addToNavigationHistory } from "@/lib/features/ui/uiSlice"
@@ -7,7 +7,7 @@ import { CoinsTable } from "../../components/dashboard/coins-table"
 import { DashboardHeader } from "../../components/dashboard/dashboard-header"
 import { SearchAndFilters } from "../../components/dashboard/search-and-filters"
 // import { RealTimeIndicator } from "./real-time-indicator"
-// import { Breadcrumbs } from "@/components/navigation/breadcrumbs"
+import { Breadcrumbs } from "../../components/navigation/breadcrumbs"
 // import { useAutoRefresh } from "@/hooks/use-auto-refresh"
 // import { Card, CardContent } from "@/components/ui/card"
 // import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -39,7 +39,7 @@ const Dashboard = () => {
       <DashboardHeader />
 
       <main className="container mx-auto px-4 py-8">
-        {/* <Breadcrumbs /> */}
+        <Breadcrumbs />
 
         <div className="flex items-center justify-between mb-6">
           <div>

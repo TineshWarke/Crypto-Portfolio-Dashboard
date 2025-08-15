@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
 import coinsReducer from "./features/coins/coinsSlice"
-// import portfolioReducer from "./features/portfolio/portfolioSlice"
+import portfolioReducer from "./features/portfolio/portfolioSlice"
 import uiReducer from "./features/ui/uiSlice"
 
 export const store = configureStore({
     reducer: {
         coins: coinsReducer,
-        // portfolio: portfolioReducer,
+        portfolio: portfolioReducer,
         ui: uiReducer,
     },
     middleware: (getDefaultMiddleware) =>

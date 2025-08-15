@@ -1,16 +1,14 @@
-"use client"
-
 import { useState } from "react"
-import { useAppDispatch, useAppSelector } from "@/lib/hooks"
-import { updateHolding } from "@/lib/features/portfolio/portfolioSlice"
-import { selectCoinInPortfolio } from "@/lib/features/portfolio/portfolioSelectors"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { useAppDispatch, useAppSelector } from "../../lib/hooks"
+import { updateHolding } from "../../lib/features/portfolio/portfolioSlice"
+import { selectCoinInPortfolio } from "../../lib/features/portfolio/portfolioSelectors"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../../components/ui/dialog"
+import { Button } from "../../components/ui/button"
+// import { Label } from "@/components/ui/label"
 import { Plus, Edit } from "lucide-react"
 import { useForm } from "react-hook-form"
-import type { Coin } from "@/lib/features/coins/coinsSlice"
+import type { Coin } from "../../lib/features/coins/coinsSlice"
+import { cn } from "../../lib/utils"
 
 interface AddToPortfolioDialogProps {
   coin: Coin
@@ -83,8 +81,8 @@ export function AddToPortfolioDialog({ coin }: AddToPortfolioDialogProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="amount">Amount</Label>
-            <Input
+            <label htmlFor="amount">Amount</label>
+            <input
               id="amount"
               type="number"
               step="any"
@@ -93,6 +91,11 @@ export function AddToPortfolioDialog({ coin }: AddToPortfolioDialogProps) {
                 required: "Amount is required",
                 min: { value: 0, message: "Amount must be positive" },
               })}
+              className={cn(
+                "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+                "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+                "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive"
+              )}
             />
             {errors.amount && <p className="text-sm text-destructive">{errors.amount.message}</p>}
           </div>
