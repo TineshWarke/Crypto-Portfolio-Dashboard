@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../lib/hooks"
 import { selectFilteredCoins } from "../../lib/features/coins/coinsSelectors"
 import { CoinsTable } from "../../components/dashboard/coins-table"
 import { DashboardHeader } from "../../components/dashboard/dashboard-header"
-// import { SearchAndFilters } from "./search-and-filters"
+import { SearchAndFilters } from "../../components/dashboard/search-and-filters"
 // import { RealTimeIndicator } from "./real-time-indicator"
 // import { Breadcrumbs } from "@/components/navigation/breadcrumbs"
 // import { useAutoRefresh } from "@/hooks/use-auto-refresh"
@@ -65,7 +65,7 @@ const Dashboard = () => {
         )} */}
 
         <div className="mb-6">
-          {/* <SearchAndFilters /> */}
+          <SearchAndFilters />
         </div>
 
         <div className="bg-white dark:bg-gray-800 shadow rounded-lg overflow-hidden">
