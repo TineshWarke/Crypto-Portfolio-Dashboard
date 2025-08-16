@@ -41,5 +41,5 @@ export const selectFilteredCoins = createSelector([selectCoinsState, selectUISta
 })
 
 export const selectCoinsLoading = (state: RootState) => state.coins.loading
-export const selectCoinsError = (state: RootState) => state.coins.error
 export const selectLastUpdated = (state: RootState) => state.coins.lastUpdated
+export const selectCoinsError = (state: RootState) => state.coins.error

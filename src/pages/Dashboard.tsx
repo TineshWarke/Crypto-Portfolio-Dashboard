@@ -1,25 +1,22 @@
 import { memo, useCallback, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../lib/hooks"
-// import { fetchCoins } from "@/lib/features/coins/coinsSlice"
-// import { addToNavigationHistory } from "@/lib/features/ui/uiSlice"
-import { selectCoinsLoading, selectFilteredCoins } from "../../lib/features/coins/coinsSelectors"
+import { selectCoinsError, selectCoinsLoading, selectFilteredCoins } from "../../lib/features/coins/coinsSelectors"
 import { CoinsTable } from "../../components/dashboard/coins-table"
 import { DashboardHeader } from "../../components/dashboard/dashboard-header"
 import { SearchAndFilters } from "../../components/dashboard/search-and-filters"
 import { RealTimeIndicator } from "../../components/dashboard/real-time-indicator"
 import { Breadcrumbs } from "../../components/navigation/breadcrumbs"
 import { useAutoRefresh } from "../../hooks/use-auto-refresh"
-// import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Button } from "../../components/ui/button"
 import { RefreshCw } from "lucide-react"
 import { useSelector } from "react-redux"
 import { fetchCoins } from "../../lib/features/coins/coinsSlice"
+import { ToastContainer, toast } from 'react-toastify';
 
 export const Dashboard = memo(function DashboardContent() {
   const dispatch = useAppDispatch()
-  // const pathname = usePathname()
   const loading = useAppSelector(selectCoinsLoading)
-  // const error = useAppSelector(selectCoinsError)
+  const error = useAppSelector(selectCoinsError)
   const filteredCoins = useSelector(selectFilteredCoins)
 
   const { manualRefresh } = useAutoRefresh({
@@ -33,9 +30,7 @@ export const Dashboard = memo(function DashboardContent() {
 
   useEffect(() => {
     fetchCoinsCallback()
-    // dispatch(addToNavigationHistory(location.pathname))
   }, [fetchCoinsCallback, location.pathname])
-
 
   return (
     <div className="min-h-screen bg-background">
@@ -60,12 +55,10 @@ export const Dashboard = memo(function DashboardContent() {
             </Button>
           </div>
         </div>
-        {/* 
+
         {error && (
-          <Alert className="mb-6" variant="destructive">
-            <AlertDescription>{error}. Please try refreshing the page.</AlertDescription>
-          </Alert>
-        )} */}
+          toast.error(error + ' Please try refreshing the page.')
+        )}
 
         <div className="mb-6">
           <SearchAndFilters />
@@ -83,6 +76,8 @@ export const Dashboard = memo(function DashboardContent() {
           <CoinsTable />
         </div>
       </main>
+
+      <ToastContainer />
     </div>
   )
 })
