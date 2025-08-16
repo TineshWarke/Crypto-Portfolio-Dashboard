@@ -3,7 +3,7 @@ import { useAppSelector } from "../../lib/hooks"
 import { selectFilteredCoins, selectCoinsLoading } from "../../lib/features/coins/coinsSelectors"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table"
 import { AddToPortfolioDialog } from "./add-to-portfolio-dialog"
-// import { CoinDetailDialog } from "./coin-detail-dialog"
+import { CoinDetailDialog } from "./coin-detail-dialog"
 import type { Coin } from "../../lib/features/coins/coinsSlice"
 
 const CoinRow = memo(function CoinRow({ coin }: { coin: Coin }) {
@@ -67,7 +67,7 @@ const CoinRow = memo(function CoinRow({ coin }: { coin: Coin }) {
 
             <TableCell>
                 <div className="flex items-center space-x-2">
-                    {/* <CoinDetailDialog coin={coin} /> */}
+                    <CoinDetailDialog coin={coin} />
                     <AddToPortfolioDialog coin={coin} />
                 </div>
             </TableCell>
