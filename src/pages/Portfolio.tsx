@@ -46,7 +46,7 @@ const Portfolio = memo(function Portfolio() {
     <div className="min-h-screen bg-background">
       <DashboardHeader />
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto p-8">
         <Breadcrumbs />
 
         <div className="flex items-center justify-between mb-6">

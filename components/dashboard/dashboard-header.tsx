@@ -29,7 +29,7 @@ export function DashboardHeader() {
 
     return (
         <header className="sticky top-0 z-40 border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center space-x-8">
                         <Link to="/dashboard" className="flex items-center space-x-2">
