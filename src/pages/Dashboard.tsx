@@ -1,5 +1,6 @@
 import { memo, useCallback, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../lib/hooks"
+import { addToNavigationHistory } from "../../lib/features/ui/uiSlice"
 import { selectCoinsError, selectCoinsLoading, selectFilteredCoins } from "../../lib/features/coins/coinsSelectors"
 import { CoinsTable } from "../../components/dashboard/coins-table"
 import { DashboardHeader } from "../../components/dashboard/dashboard-header"
@@ -30,6 +31,7 @@ export const Dashboard = memo(function DashboardContent() {
 
   useEffect(() => {
     fetchCoinsCallback()
+    dispatch(addToNavigationHistory(location.pathname))
   }, [fetchCoinsCallback, location.pathname])
 
   return (

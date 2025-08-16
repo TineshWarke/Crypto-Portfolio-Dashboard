@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useRef, useCallback } from "react"
 import { useAppDispatch } from "../lib/hooks"
 import { fetchCoins } from "../lib/features/coins/coinsSlice"

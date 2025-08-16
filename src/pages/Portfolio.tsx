@@ -2,7 +2,7 @@ import { memo, useCallback, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../lib/hooks"
 import { fetchCoins } from "../../lib/features/coins/coinsSlice"
 import { updatePortfolioValues } from "../../lib/features/portfolio/portfolioSlice"
-// import { addToNavigationHistory } from "../../lib/features/ui/uiSlice"
+import { addToNavigationHistory } from "../../lib/features/ui/uiSlice"
 import { selectPortfolioWithCoinData, selectPortfolioSummary } from "../../lib/features/portfolio/portfolioSelectors"
 import { DashboardHeader } from "../../components/dashboard/dashboard-header"
 import { PortfolioSummary } from "../../components/portfolio/portfolio-summary"
@@ -15,7 +15,6 @@ import { useAutoRefresh } from "../../hooks/use-auto-refresh"
 
 const Portfolio = memo(function Portfolio() {
   const dispatch = useAppDispatch()
-  // const pathname = usePathname()
   const portfolioData = useAppSelector(selectPortfolioWithCoinData)
   const portfolioSummary = useAppSelector(selectPortfolioSummary)
 
@@ -39,7 +38,7 @@ const Portfolio = memo(function Portfolio() {
 
   useEffect(() => {
     fetchCoinsCallback()
-    // dispatch(addToNavigationHistory(location.pathname))
+    dispatch(addToNavigationHistory(location.pathname))
   }, [fetchCoinsCallback, location.pathname])
 
 

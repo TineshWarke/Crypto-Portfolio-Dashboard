@@ -1,5 +1,3 @@
-"use client"
-
 import { Link } from "react-router-dom"
 import { Button } from "../ui/button"
 import { Wallet, TrendingUp } from "lucide-react"

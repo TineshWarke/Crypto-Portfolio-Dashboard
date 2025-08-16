@@ -96,7 +96,7 @@ export function PortfolioAnalytics({ holdings }: PortfolioAnalyticsProps) {
                                     dataKey="value"
                                 >
                                     {analyticsData.pieData.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                        <Cell key={`cell-${entry}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
                                 <Tooltip content={<CustomTooltip />} />
